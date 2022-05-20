@@ -36,7 +36,7 @@
                                     <td>{{ $manageSettings->settings_key }}</td>
                                     <td>{{ $manageSettings->settings_type }}</td>
                                     <td width="5"><a href="{{ route('settings.edit', $manageSettings->id) }}">
-                                            <i class="fa fa-pencil"></i></a></td>
+                                            <i class="fa fa-pencil-square"></i></a></td>
                                     <td width="5">
                                         @if ($manageSettings->settings_delete)
                                         <a href="javascript:void(0)"><i class="fa fa-trash-o" id='clck'></i></a>
