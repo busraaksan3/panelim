@@ -25,7 +25,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{$user->type}}</td>
                                     <td width="5"><a href="{{ route('user.edit', $user->id) }}"><i
-                                                class="fa fa-pencil-square"></i></a></td>
+                                                class="fa fa-pencil"></i></a></td>
                                     <td width="5"><a href="{{ route('user.destroy', $user->id) }}"><i
                                                 class="fa fa-trash-o"></i></a>
 

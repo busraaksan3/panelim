@@ -24,7 +24,7 @@
                             @foreach ($data['blog'] as $blog)
                                 <td>{{ $blog['blog_title'] }}</td>
                                 <td width="5"><a href="{{ route('blog.edit', $blog->id) }}"><i
-                                            class="fa fa-pencil-square"></i></a></td>
+                                            class="fa fa-pencil"></i></a></td>
                                 <td width="5"><a href="javascript:void(0)"><i class="fa fa-trash-o" id='click1'></i></a>
                                 </td>
 
