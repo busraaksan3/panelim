@@ -30,6 +30,7 @@ class userController extends Controller
     public function create()
     {
         return view('back.user.create');
+        
     }
 
     /**
