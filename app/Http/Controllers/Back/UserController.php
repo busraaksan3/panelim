@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -30,7 +31,6 @@ class userController extends Controller
     public function create()
     {
         return view('back.user.create');
-        
     }
 
     /**
@@ -39,19 +39,9 @@ class userController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|Min:6'
-
-        ]);
-
-        if ($request->hasFile('profile_photo_path')) {
-            $request->validate([
-                'profile_photo_path' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            ]);
+        if ($request->hasFile('profile_photo_path')) {          
 
             $file_name = uniqid() . '.' . $request->profile_photo_path->getClientOriginalExtension();
             $request->profile_photo_path->move(public_path('images/users'), $file_name);
@@ -64,8 +54,6 @@ class userController extends Controller
                 "name" => $request->name,
                 "email" => $request->email,
                 "password" => Hash::make($request->password)
-
-
             ]
         );
         if ($user) {
@@ -111,7 +99,7 @@ class userController extends Controller
         $findUser = User::find($id);
         $findUser->name = $request->name;
         $findUser->email = $request->email;
-        if($request->hasFile('profile_photo_path')){
+        if ($request->hasFile('profile_photo_path')) {
 
             $file_name = uniqid() . '.' . $request->profile_photo_path->getClientOriginalExtension();
             $request->profile_photo_path->move(public_path('images/users'), $file_name);
@@ -123,9 +111,8 @@ class userController extends Controller
             }
 
             $findUser->profile_photo_path = $file_name;
-
         }
-        if(!empty($request->password)){
+        if (!empty($request->password)) {
             $findUser->password = Hash::make($request->password);
         }
         $findUser->save();
@@ -134,7 +121,6 @@ class userController extends Controller
         if ($findUser) {
             return back();
         }
-
     }
 
 
