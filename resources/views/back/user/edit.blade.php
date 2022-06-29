@@ -78,7 +78,7 @@
                                 <div class="social social-profile-buttons me-2">
                                     <a class="social-icon text-primary" href=""><i class="fe fe-phone"></i></a>
                                 </div>
-                                <a href="javascript:void(0)" class="my-auto">+125 5826 3658</a>
+                                <a href="javascript:void(0)" class="my-auto">{{ $users->phone }}</a>
                             </li>
                         </ul>
                     </div>
@@ -112,8 +112,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputnumber">Telefon</label>
-                            <input type="number" name="tel" class="form-control" id="exampleInputnumber"
-                                placeholder="Contact number">
+                            <input type="number" name="phone" class="form-control" id="exampleInputnumber"
+                                placeholder="Contact number" value="{{ $users->phone }}">
                         </div>
 
                     </div>

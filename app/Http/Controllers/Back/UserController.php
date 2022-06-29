@@ -100,6 +100,7 @@ class userController extends Controller
         $findUser = User::find($id);
         $findUser->name = $request->name;
         $findUser->email = $request->email;
+        $findUser->phone = $request->phone;
         if ($request->hasFile('profile_photo_path')) {
 
             $file_name = uniqid() . '.' . $request->profile_photo_path->getClientOriginalExtension();
