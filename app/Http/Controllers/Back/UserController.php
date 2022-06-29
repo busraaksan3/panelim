@@ -53,6 +53,7 @@ class userController extends Controller
             [
                 "name" => $request->name,
                 "email" => $request->email,
+                "profile_photo_path"=>$file_name,
                 "password" => Hash::make($request->password)
             ]
         );

@@ -50,7 +50,7 @@
                     confirmButtonText: 'Evet,sil'
                 },
                 function() {
-                    window.location.href = "blog/" + {{ $blog->id }};
+                   window.location.href = "blog/" + {{ $blog->id }};
                 });
         });
     </script>
