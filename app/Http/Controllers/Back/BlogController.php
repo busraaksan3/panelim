@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use App\Http\Requests\CreateBlogRequest;
+use App\Http\Requests\UpdateBlogRequest;
 use Illuminate\Http\Request;
 use App\Models\Blogs;
 
@@ -36,7 +38,7 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
         if(strlen($request->blog_slug>3)) //seo url
         {
@@ -45,19 +47,12 @@ class BlogController extends Controller
             $slug=Str::slug($request->blog_title);
         }
 
-        if ($request->hasFile('blog_file')) {
-            $request->validate([
-                'blog_title'=>'required',
-                'blog_content'=>'required',
-                'blog_file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
-
-            ]);
+        if ($request->hasFile('blog_file')) {           
             $file_name = uniqid() . '.' . $request->blog_file->getClientOriginalExtension();
             $request->blog_file->move(public_path('images/blogs'), $file_name);
         } else {
             $file_name = null;
         }
-
         $blog = Blogs::insert(
             [
                 "blog_title" => $request->blog_title,
@@ -103,7 +98,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBlogRequest $request, $id)
     {
         if(strlen($request->blog_slug>3)) //seo url
         {

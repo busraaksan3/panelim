@@ -5,6 +5,19 @@
             <div class="card-header">
                 <h3 class="card-title">Kullanıcı Oluştur</h3>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <small><li>{{ $error }}</li></small>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
             <div class="card-body">
                 <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
                     @csrf

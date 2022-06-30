@@ -26,8 +26,8 @@
                                     <td>{{$user->type}}</td>
                                     <td width="5"><a href="{{ route('user.edit', $user->id) }}"><i
                                                 class="fa fa-pencil"></i></a></td>
-                                    <td width="5"><a href="{{ route('user.destroy', $user->id) }}"><i
-                                                class="fa fa-trash-o"></i></a>
+                                    <td width="5"><a href="javascript:void(0)"><i
+                                                class="fa fa-trash-o" id='click4'></i></a>
 
                                     </td>
 
@@ -40,6 +40,23 @@
         </div>
     </div>
     </div>
+    <script>
+        $(document).on("click", "#click4", function(e) {
+            $('body').removeClass('timer-alert');
+
+            swal({
+                    title: "Uyarı",
+                    text: "Kullanıcı silinecektir, emin misiniz?",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: 'Vazgeç',
+                    confirmButtonText: 'Evet,sil'
+                },
+                function() {
+                   window.location.href = "user/" + {{ $user->id }};
+                });
+        });
+    </script>
    
 @endsection
 @section('css')
