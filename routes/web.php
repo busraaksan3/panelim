@@ -5,6 +5,7 @@ use App\Http\Controllers\Back\DefaultController;
 use App\Http\Controllers\Back\SettingsController;
 use App\Http\Controllers\Back\BlogController;
 use App\Http\Controllers\Back\UserController;
+use App\Http\Controllers\Back\LangController;
 
 
 
@@ -33,6 +34,11 @@ Route::resource('settings',SettingsController::class);
 //USERS
    Route::get('user/{id}',[UserController::class , 'destroy'])->whereNumber('id')->name('user.destroy');
    Route::resource('user',UserController::class);
+
+//TRANSLATE
+   Route::get('language/{id}',[LangController::class , 'destroy'])->whereNumber('id')->name('language.destroy');
+   Route::resource('language',LangController::class);
+
 });
 });
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

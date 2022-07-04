@@ -29,6 +29,14 @@ return [
         "sub" => "User",
         "route" => "user.index" 
     
+    ],
+    [
+        "id" => 5,
+        "name" => "Languages",
+        "icon" => "side-menu__icon fe fe-slack",
+        "sub" => "Translate",
+        "route" => "language.index" 
+    
     ]
-    //id=4
+    //id=5
 ];
