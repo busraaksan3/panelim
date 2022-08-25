@@ -54,7 +54,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <input class="form-control" type="text" name="blog_slug"
-                                    value="{{ $blogs->blog_slug }}">
+                                    value="{{ $blogs->blog_slug }}" readonly>
                             </div>
                         </div>
                     </div>

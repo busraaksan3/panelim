@@ -62,8 +62,8 @@
                             href="javascript:void(0)"></a>
                         <!-- sidebar-toggle-->
                         <a class="logo-horizontal " href="">
-                            <img src="/back/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                            <img src="/back/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                            <img src="{{ asset("back/images/brand/logo.png") }}" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="{{ asset("back/images/brand/logo-3.png") }}" class="header-brand-img light-logo1" alt="logo">
                         </a>
                         <!-- LOGO -->
                         <div class="d-flex order-lg-2 ms-auto header-right-icons">
@@ -184,7 +184,7 @@
                                         <div class="dropdown d-flex profile-1">
                                             <a href="javascript:void(0)" data-bs-toggle="dropdown"
                                                 class="nav-link leading-none d-flex">
-                                                <img src="../images/users/{{Auth::user()->profile_photo_path}}" alt="profile-user"
+                                                <img src="{{asset("images/users")}}/{{Auth::user()->profile_photo_path}}" alt="profile-user"
                                                     class="avatar  profile-user brround cover-image">
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -221,11 +221,11 @@
                 <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
                 <div class="app-sidebar">
                     <div class="side-header">
-                        <a class="header-brand1" href="index.html">
-                            <img src="../back/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                            <img src="../back/images/brand/logo-1.png" class="header-brand-img toggle-logo" alt="logo">
-                            <img src="../back/images/brand/logo-2.png" class="header-brand-img light-logo" alt="logo">
-                            <img src="../back/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                        <a class="header-brand1" href="/manage">
+                            <img src="{{ asset("back/images/brand/logo.png") }}" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="{{ asset("back/images/brand/logo-1.png") }}" class="header-brand-img toggle-logo" alt="logo">
+                            <img src="{{ asset("back/images/brand/logo-2.png") }}" class="header-brand-img light-logo" alt="logo">
+                            <img src="{{ asset("back/images/brand/logo-3.png") }}" class="header-brand-img light-logo1" alt="logo">
                         </a>
                         <!-- LOGO -->
                     </div>
