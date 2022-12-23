@@ -7,6 +7,10 @@ use App\Http\Requests\CreateLangRequest;
 use App\Http\Requests\UpdateLangRequest;
 use Illuminate\Http\Request;
 use App\Models\Languages;
+use App\Models\LanguagesWords;
+use App\Models\LanguagesTranslates;
+use App\Models\User;
+
 
 class LangController extends Controller
 {
@@ -15,6 +19,79 @@ class LangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function get_ceviri(Request $request){
+
+        $find = LanguagesWords::find($request->id);
+        return $find->translates()->get()->toJson();
+
+    }
+
+    function ajax_get_ceviriler(){
+
+        $getAll = \App\Models\LanguagesWords::get();
+        $getAllLanguages = \App\Models\Languages::get();
+
+        foreach ($getAll as $k => $a){
+            foreach ($getAllLanguages as $lang){
+                $translates = $a->translates()->where("language_id","=",$lang->id)->first();
+                $column_name = $lang->code;
+                $getAll[$k]->$column_name = $translates->word;
+            }
+        }
+
+        $array = array();
+        $array["data"] = $getAll;
+        return json_encode($array);
+
+    }
+
+    function save_ceviri(Request $request){
+
+        $find = LanguagesWords::find($request->ceviri_id);
+        foreach ($find->translates()->get() as $get){
+            $findTranslate = LanguagesTranslates::find($get->id);
+            $str = "lang_".$findTranslate->language_id;
+            $findTranslate->word = $request->$str;
+            $findTranslate->save();
+        }
+        return "ok";
+
+    }
+
+    function translates(){
+      
+        return view("back.language.translate.index");
+    }
+
+    function switch_language($code){
+
+        $findLanguage = Languages::where("code","=",$code)->first();
+        if($findLanguage){
+
+            if(session_status() != PHP_SESSION_ACTIVE){
+                session_start();
+            }
+
+            if(@$_SESSION['CURRENT_USER']){
+                $getUser = User::find(getCurrentUser()->id);
+                $getUser->dil = $findLanguage->code;
+                $getUser->save();
+
+                $_SESSION['CURRENT_USER'] = $getUser;
+                $_SESSION['LANGUAGE'] = $findLanguage->code;
+            }else{
+                $_SESSION['LANGUAGE'] = $findLanguage->code;
+            }
+
+            return redirect()->back();
+
+        }else{
+            return redirect()->back();
+        }
+
+    }
+
     public function index()
     {
         $data['lang'] = Languages::all();
@@ -48,6 +125,7 @@ class LangController extends Controller
         $lang = Languages::insert(
             [
                 "name" => $request->name,
+                "code" => $request->code,
                 "flag" => $file_name,
 
             ]
@@ -92,6 +170,7 @@ class LangController extends Controller
     {
         $lang = Languages::find($id);
         $lang->name = $request->name;
+        $lang->code = $request->code;
         
         if ($request->hasFile('flag')) {
 

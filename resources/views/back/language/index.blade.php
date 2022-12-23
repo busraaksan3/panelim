@@ -21,6 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
                             @foreach ($data['lang'] as $language)
                                 <td><img style="height: 30px; width:50px;" src="../images/flag/{{ $language['flag'] }}" alt="">  {{ $language['name'] }}</td>
                                 

@@ -43,7 +43,7 @@ return [
         "name" => "Çeviriler",
         "icon" => "side-menu__icon fe fe-shuffle",
         "sub" => "",
-        "route" => "language.index" 
+        "route" => "admin.languages.translates" 
     
     ]
     //id=6

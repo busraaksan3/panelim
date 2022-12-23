@@ -32,13 +32,19 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="form-group">
                         <label>Dil Adı</label>
                         <div class="row">
                             <div class="col-xs-12">
                                 <input class="form-control" type="text" name="name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Dil Kodu</label>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" name="code">
                             </div>
                         </div>
                     </div>
